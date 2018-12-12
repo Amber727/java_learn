@@ -6,12 +6,14 @@
  *
 */
 
+//资源
 class Resource
 {
 	private String name;
 	private int count;
 	private boolean flag;
 
+	//set方法 用来存储数据
 	public synchronized void set(String name)
 	{
 		while (flag)
@@ -26,9 +28,10 @@ class Resource
 		this.name = name;
 		System.out.println(Thread.currentThread().getName() + "...生产者..." + count++);
 		flag = true;
-		this.notifyAll();
+		this.notifyAll();	//唤醒所有线程
 	}
 
+	//get方法 用于获取值
 	public synchronized void get()
 	{
 		while (!flag)
@@ -42,10 +45,11 @@ class Resource
 		}
 		System.out.println(Thread.currentThread().getName() + "......消费者......" + count);
 		flag = false;
-		this.notifyAll();
+		this.notifyAll();	//唤醒所有线程
 	}
 }
 
+//生产者 实现Runnable接口
 class Producer implements Runnable
 {
 	private Resource res;
@@ -63,6 +67,7 @@ class Producer implements Runnable
 	}
 }
 
+//消费者 实现Runnable接口
 class Consumer implements Runnable
 {
 	private Resource res;
@@ -85,10 +90,10 @@ class ProducerConsumer
 {
 	public static void main (String[] args)
 	{
-		Resource res = new Resource();
+		Resource res = new Resource();	//产生一个资源
 
-		Producer pro = new Producer(res);
-		Consumer con = new Consumer(res);
+		Producer pro = new Producer(res);	//实例化生产者
+		Consumer con = new Consumer(res);	//实例化消费者
 
 		new Thread(pro).start();
 		new Thread(pro).start();
