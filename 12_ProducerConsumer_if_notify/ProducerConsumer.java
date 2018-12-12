@@ -24,9 +24,7 @@ class Resource
 				this.wait();
 			}
 			catch ( InterruptedException e )
-			{
-
-			}
+			{	}
 		}
 		this.name = name;
 		System.out.println(Thread.currentThread().getName() + "...生产了..." + count++);
