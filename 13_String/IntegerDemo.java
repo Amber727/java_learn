@@ -23,6 +23,9 @@
  *		double d = parseDouble("1.2");
  *		boolean b = parseBoolean("true");
  *
+ *		Integer i = new Integer("123");
+ *		int num = i.intValue();
+ *
  * 进制转换
  * 1.十进制转其他进制
  *		toBinaryString();
@@ -30,6 +33,8 @@
  *		toOctalString();
  *
  * 2.其他进制转十进制
+ *		parseInt(string, 进制);
+ *			
  * */
 
 class IntegerDemo
@@ -52,9 +57,20 @@ class IntegerDemo
 		long l = Long.parseLong("123");
 		sop("Long.parseLong(\"123\"): " + getType(l));
 
-		//十进制数转二进制数
-		sop("Integer.toBinaryString(-6)" + Integer.toBinaryString(-6));
+		//字符串转int的另外一种方式
+ 		Integer in = new Integer("123");
+ 		int num = in.intValue();
 
+		//十进制数转二进制数
+		sop("Integer.toBinaryString(6): " + Integer.toBinaryString(6));
+		sop("Integer.toBinaryString(-6): " + Integer.toBinaryString(-6));
+
+		//十进制转十六进制
+		sop("Integer.toHexString(12): " + Integer.toHexString(12));
+
+		//parseInt(string, 进制)
+		sop("parseInt(\"110\", 10): " + Integer.parseInt("110", 10));
+		sop("parseInt(\"110\", 2): " + Integer.parseInt("110", 2));
 	}
 
 	public static void sop(String str)
